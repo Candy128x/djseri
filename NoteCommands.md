@@ -8,12 +8,17 @@
 - => source venv/bin/activate
 
 ## pip3 install *packages
+- Install Django
 - => pip3 install django
 - => [OR] python -m pip install Django
-- => python -m django --version # Know which package is installed
+- Know which package is installed
+- => python -m django --version
+- Install DRF
 - => pip3 install djangorestframework
-- => [optional] pip install markdown       # Markdown support for the browsable API.
-- => [optional] pip install django-filter  # Filtering support
+- [optional] Markdown support for the browsable API.
+- => pip install markdown
+- [optional] Filtering support
+- => pip install django-filter
 
 ## To Start, Work on Project 
 - Create Project
@@ -34,7 +39,8 @@
 - => pip3 install python-decouple
 
 
-**Note**
+---
+### Note: Some Useful Command's
 
 ---
 - check django version
@@ -55,4 +61,8 @@
 ---
 - create super user
 - => python3 manage.py createsuperuser
+
+---
+- To open Interactive Console / Terminal
+- => python3 manage.py shell
 

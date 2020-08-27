@@ -1,13 +1,15 @@
 # Django Serializer Demo Project
 
+
 ---
 ## Software Requirements
-- python : 3.6.9
-- django : 3.1
+- Python : 3.6.9
+- Django : 3.1
+- DRF: 3.11.1
 
 
 ---
-**See Command's documentation [here](NoteCommands.md)**
+**See Command's Documentation [here](NoteCommands.md)**
 
 
 ---
@@ -16,3 +18,5 @@
 
 
 ---
+
+
