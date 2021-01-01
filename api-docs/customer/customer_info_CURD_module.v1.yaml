@@ -1,0 +1,402 @@
+openapi: 3.0.0
+info:
+  title: customer_info_CURD_module
+  version: '1.0'
+servers:
+  - url: 'http://localhost:8000'
+paths:
+  '/customer/info/{id}/':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get User Info by User ID
+      tags: []
+      responses:
+        '200':
+          description: User Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                success-response:
+                  value:
+                    status_code: 200
+                    status: success
+                    message:
+                      - Customer detail retrieved successfully.
+                    data:
+                      id: 3
+                      first_name: chintu
+                      last_name: doe
+                      email: jd03@mail.com
+                      dob: '2020-12-10'
+                      gender: 1
+                      extra: {}
+      operationId: get-users-userId
+      description: Retrieve the information of the user with the matching user ID.
+    put:
+      summary: ''
+      operationId: put-customer-info-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                example-1:
+                  value:
+                    id: 2
+                    first_name: jhon
+                    last_name: doe
+                    email: jd2b@mail.com
+                    dob: '1991-01-01'
+                    gender: 1
+                    extra: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+            examples:
+              success-response:
+                value:
+                  status_code: 200
+                  status: success
+                  message:
+                    - Customer updated successfully.
+                  data:
+                    id: 2
+                    first_name: jhon
+                    last_name: doe
+                    email: jd2b@mail.com
+                    dob: '1991-01-01'
+                    gender: 1
+                    extra: {}
+    delete:
+      summary: ''
+      operationId: delete-customer-info-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                success-response:
+                  value:
+                    status_code: 204
+                    status: success
+                    message:
+                      - Customer deleted successfully.
+                    data: null
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                entered invalid ID:
+                  value:
+                    detail: Not found.
+  /customer/info/:
+    post:
+      summary: Create New User
+      operationId: post-user
+      responses:
+        '201':
+          description: User Created
+          content:
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                success-response:
+                  value: |-
+                    {
+                        "status_code": 201,
+                        "status": "success",
+                        "message": [
+                            "Customer created successfully."
+                        ],
+                        "data": {
+                            "id": 27,
+                            "first_name": "jhon",
+                            "last_name": "doe",
+                            "email": "jd01g@mail.com",
+                            "dob": null,
+                            "gender": 1,
+                            "extra": {}
+                        }
+                    }
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                duplicate email:
+                  value:
+                    status_code: 400
+                    status: error
+                    message:
+                      email:
+                        - Customer with this email already exists!
+                    data: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: Jhon
+                last_name:
+                  type: string
+                  example: Doe
+                email:
+                  type: string
+                  format: email
+                  example: jhondoe@gmail.com
+                gender:
+                  type: boolean
+                dob:
+                  type: string
+                  format: date
+                  example: '1991-01-01'
+              required:
+                - first_name
+                - last_name
+                - email
+            examples:
+              Create Customer:
+                value:
+                  first_name: jhon
+                  last_name: doe
+                  email: jd1@mail.com
+                  dob: '2020-12-10'
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: Post the necessary fields for the API to create a new user.
+      description: Create a new user.
+    parameters: []
+    get:
+      summary: ''
+      operationId: get-customer-info
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                success-response:
+                  value:
+                    status_code: 200
+                    status: success
+                    message:
+                      - Customer list retrieved successfully.
+                    data:
+                      - id: 20
+                        first_name: Tejas
+                        last_name: doe
+                        email: jd20@mail.com
+                        dob: '2020-12-10'
+                        gender: 1
+                        extra: {}
+                      - id: 19
+                        first_name: Suresh
+                        last_name: doe
+                        email: jd19@mail.com
+                        dob: '2020-12-10'
+                        gender: 1
+                        extra: {}
+                      - id: 18
+                        first_name: Ramesh
+                        last_name: doe
+                        email: jd18@mail.com
+                        dob: '2020-12-10'
+                        gender: 1
+                        extra: {}
+                      - id: 17
+                        first_name: quzie
+                        last_name: doe
+                        email: jd17@mail.com
+                        dob: '2020-12-10'
+                        gender: 0
+                        extra: {}
+                      - id: 16
+                        first_name: pappu
+                        last_name: doe
+                        email: jd16@mail.com
+                        dob: '2020-12-10'
+                        gender: 1
+                        extra: {}
+                      - id: 15
+                        first_name: omika
+                        last_name: doe
+                        email: jd15@mail.com
+                        dob: '2020-12-10'
+                        gender: 1
+                        extra: {}
+                      - id: 14
+                        first_name: NitiN
+                        last_name: doe
+                        email: jd14@mail.com
+                        dob: '2020-12-10'
+                        gender: 1
+                        extra: {}
+                      - id: 13
+                        first_name: Monika
+                        last_name: doe
+                        email: jd13@mail.com
+                        dob: '2020-12-10'
+                        gender: 0
+                        extra: {}
+                      - id: 12
+                        first_name: Lalita
+                        last_name: doe
+                        email: jd12@mail.com
+                        dob: '2020-12-10'
+                        gender: 0
+                        extra: {}
+                      - id: 11
+                        first_name: Kamlesh
+                        last_name: doe
+                        email: jd11@mail.com
+                        dob: '2020-12-10'
+                        gender: 1
+                        extra: {}
+                      - id: 10
+                        first_name: jhon
+                        last_name: doe
+                        email: jd10@mail.com
+                        dob: '2020-12-10'
+                        gender: 1
+                        extra: {}
+                      - id: 9
+                        first_name: Inni
+                        last_name: doe
+                        email: jd09@mail.com
+                        dob: '2020-12-10'
+                        gender: 0
+                        extra: {}
+                      - id: 8
+                        first_name: harsh
+                        last_name: doe
+                        email: jd08@mail.com
+                        dob: '2020-12-10'
+                        gender: 1
+                        extra: {}
+                      - id: 7
+                        first_name: Gopi
+                        last_name: doe
+                        email: jd07@mail.com
+                        dob: '2020-12-10'
+                        gender: 0
+                        extra: {}
+                      - id: 6
+                        first_name: Fazal
+                        last_name: doe
+                        email: jd06@mail.com
+                        dob: '2020-12-10'
+                        gender: 1
+                        extra: {}
+                      - id: 5
+                        first_name: Evan
+                        last_name: doe
+                        email: jd05@mail.com
+                        dob: '2020-12-10'
+                        gender: 1
+                        extra: {}
+                      - id: 4
+                        first_name: Devendra
+                        last_name: doe
+                        email: jd04@mail.com
+                        dob: '2020-12-10'
+                        gender: 1
+                        extra: {}
+                      - id: 3
+                        first_name: chintu
+                        last_name: doe
+                        email: jd03@mail.com
+                        dob: '2020-12-10'
+                        gender: 1
+                        extra: {}
+                      - id: 2
+                        first_name: jhon
+                        last_name: doe
+                        email: jd2b@mail.com
+                        dob: '1991-01-01'
+                        gender: 1
+                        extra: {}
+                      - id: 1
+                        first_name: abhinav
+                        last_name: doe
+                        email: jd01@mail.com
+                        dob: '2020-12-10'
+                        gender: 1
+                        extra: {}
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ''
+      x-examples:
+        Alice Smith:
+          id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: '1997-10-31'
+          emailVerified: true
+          signUpDate: '2019-08-24'
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        dateOfBirth:
+          type: string
+          format: date
+          example: '1997-10-31'
+        emailVerified:
+          type: boolean
+          description: Set to true if the user's email has been verified.
+        createDate:
+          type: string
+          format: date
+          description: The date that the user was created.
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - emailVerified
